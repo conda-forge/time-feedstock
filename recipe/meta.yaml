@@ -17,18 +17,18 @@ build:
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - make
   host:
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME   # [osx]
     - $(which time) -v echo test
 
 about:
   home: http://www.gnu.org/software/time/
-  license: GPLv2
+  license: GPL-3.0-or-later
   license_family: GPL
   license_file: COPYING
   summary: time command from GNU
@@ -45,3 +45,4 @@ about:
 extra:
   recipe-maintainers:
     - epruesse
+    - martin-g
