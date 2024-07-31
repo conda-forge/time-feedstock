@@ -2,6 +2,9 @@
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-aux
 
+# Fix "call to undeclared library function 'memset'" on osx_arm64
+sed -Ei.bak 's/(#include "config.h")/\1\n#include <string.h>/' src/resuse.c
+
 ./configure \
     --prefix=$PREFIX \
     --disable-dependency-tracking \
