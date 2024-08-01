@@ -1,6 +1,6 @@
 {% set name = "time" %}
-{% set version = "1.8" %}
-{% set sha256 = "8a2f540155961a35ba9b84aec5e77e3ae36c74cecb4484db455960601b7a2e1b" %}
+{% set version = "1.9" %}
+{% set sha256 = "fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e" %}
 
 package:
   name: {{ name|lower }}
@@ -19,6 +19,7 @@ requirements:
   build:
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make
   host:
 
