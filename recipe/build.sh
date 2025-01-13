@@ -2,9 +2,9 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-aux
+export CFLAGS="${CFLAGS} -Wno-implicit-function-declaration"
 
+autoreconf --force --verbose --install
 ./configure \
     --prefix=$PREFIX \
     --disable-dependency-tracking \

@@ -14,9 +14,10 @@ build:
 
 requirements:
   build:
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
+    - autoconf
+    - automake
     - make
 
 test:
