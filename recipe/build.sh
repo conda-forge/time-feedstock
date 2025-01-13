@@ -15,5 +15,6 @@ autoreconf --force --verbose --install
 make -j$CPU_COUNT
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
 make check -j$CPU_COUNT
+cat test-suite.log
 fi
 make install
