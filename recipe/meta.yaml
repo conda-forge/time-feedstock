@@ -20,6 +20,7 @@ requirements:
     - automake
     - make
     - texinfo
+    - sed
 
 test:
   commands:
