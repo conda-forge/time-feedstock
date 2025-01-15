@@ -1,15 +1,12 @@
-{% set name = "time" %}
-{% set version = "1.8" %}
-{% set sha256 = "8a2f540155961a35ba9b84aec5e77e3ae36c74cecb4484db455960601b7a2e1b" %}
+{% set version = "1.9" %}
 
 package:
-  name: {{ name|lower }}
+  name: time
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: http://mirrors.ocf.berkeley.edu/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: http://mirrors.ocf.berkeley.edu/gnu/time/time-{{ version }}.tar.gz
+  sha256: fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
 
 build:
   number: 0
@@ -17,10 +14,13 @@ build:
 
 requirements:
   build:
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
+    - autoconf
+    - automake
     - make
-  host:
+    - texinfo
+    - sed
 
 test:
   commands:
@@ -29,7 +29,6 @@ test:
 about:
   home: http://www.gnu.org/software/time/
   license: GPL-3.0-or-later
-  license_family: GPL
   license_file: COPYING
   summary: time command from GNU
   description: |
@@ -44,5 +43,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - danielnachun
     - epruesse
     - martin-g
