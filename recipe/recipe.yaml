@@ -1,33 +1,35 @@
-{% set version = "1.9" %}
+schema_version: 1
+
+context:
+  version: 1.9
 
 package:
   name: time
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
-  url: http://mirrors.ocf.berkeley.edu/gnu/time/time-{{ version }}.tar.gz
+  url: http://mirrors.ocf.berkeley.edu/gnu/time/time-${{ version }}.tar.gz
   sha256: fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
 
 build:
-  number: 0
-  skip: True  # [win]
+  number: 1
+  skip: win
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
     - autoconf
     - automake
     - make
     - texinfo
     - sed
 
-test:
-  commands:
-    - $(which time) -v echo test
+tests:
+  - script:
+      - $(which time) -v echo test
 
 about:
-  home: http://www.gnu.org/software/time/
   license: GPL-3.0-or-later
   license_file: COPYING
   summary: time command from GNU
@@ -38,8 +40,9 @@ about:
     include various resource measurements.  Some systems do not provide
     much information about program resource use; `time' reports
     unavailable information as zero values.
-  doc_url: http://man7.org/linux/man-pages/man1/time.1.html
-  dev_url: http://git.savannah.gnu.org/cgit/time.git
+  homepage: http://www.gnu.org/software/time/
+  repository: http://git.savannah.gnu.org/cgit/time.git
+  documentation: http://man7.org/linux/man-pages/man1/time.1.html
 
 extra:
   recipe-maintainers:
